@@ -14,6 +14,19 @@ void PrintArray(vector<int> a) {
     }
     cout<<endl;
 }
+//注意offset可能为0
+int GCD(int a, int b){
+    if (a==0||b==0){
+        return 0;
+    }
+    int m = a%b;
+    while (m!=0){
+        a = b;
+        b = m;
+        m = a%b;
+    }
+    return b;
+}
 
 int main(){
     int n;
@@ -27,15 +40,9 @@ int main(){
         cin >> a[i];
     }
 
-    //若n不能整除offset，则一次循环就能遍历到所有元素
-    int loops = 1;
+    //循环n与offset的最大公约数次就能遍历到所有元素
+    int loops = GCD(n, offset);
 
-    if (offset==0){
-        loops = 0;
-    }
-    else if (n%offset==0){
-        loops = offset;
-    }
     for (int i=0; i<loops; i++){
         int start = i;
 
