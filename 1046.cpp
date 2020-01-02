@@ -12,17 +12,14 @@ int main(){
         cin >> a1 >> a2 >> b1 >> b2; 
 
         int sum = a1 + b1;
-        if (a2==sum && b2==sum){
-            continue;
-        }
-
-        if (a2==sum){
+        if (a2==sum && b2!=sum){
             sum1++;
         }
-        else if (b2==sum){
+        if (b2==sum && a2!=sum){
             sum2++;
         }
     }
     cout << sum2 << " " << sum1 << endl;
     return 0;
 }
+
