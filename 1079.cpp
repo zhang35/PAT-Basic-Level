@@ -2,26 +2,11 @@
 #include <algorithm>
 using namespace std;
 
-bool isPalin(string s){
-    int len = s.length();
-    for (int i=0; i<len/2; i++){
-        if (s[i]!=s[len-i-1]){
-            return false;
-        }
-    }
-    return true;
-}
 string addString(string a, string b){
-    if (a.length()<b.length()){
-        swap(a, b);
-    }
-    for (int i=b.length(); i<a.length(); i++){
-        b = '0' + b;
-    }
     string str = "";
     int carry = 0;
-    for (int i=a.length()-1; i>=0; i--){
-        char ch = a[i] + b[i] - 48 + carry;
+    for (int i=0; i<a.size(); i++){
+        char ch = a[i] + b[i] + carry - '0';
         if (ch > '9'){
             carry = 1;
             ch -= 10;
@@ -39,24 +24,24 @@ string addString(string a, string b){
 
 int main()
 {
-    string a, b;    
+    string a;    
     cin >> a;
-    bool isFound = false;
-    for (int i=0; i<10; i++){
-        if (isPalin(a)){        
+    int n = 10;
+    int i = 0;
+    while (i<n){
+        string b = a; 
+        reverse(b.begin(), b.end());
+        if (a==b){        
             cout << a << " is a palindromic number." << endl;
-            isFound = true;
             break;
         }
-        b = a; 
-        reverse(b.begin(), b.end());
         string c = addString(a, b);
         cout << a << " + " << b << " = " << c << endl;
         a = c;
+        i++;
     }
-    if (!isFound){
+    if (i==n){
         cout << "Not found in 10 iterations." << endl;
     }
     return 0;
 }
-
