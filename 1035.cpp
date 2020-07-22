@@ -24,7 +24,7 @@ int main(){
     }
     //找到第一个未排序元素位置
     int i = 1;
-    while (b[i-1]<b[i] && i<n){
+    while (i<n && b[i-1]<=b[i]){
         i++;
     }
     if (equal(a.begin()+i, a.end(), b.begin()+i)){
